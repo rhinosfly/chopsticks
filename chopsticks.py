@@ -100,9 +100,6 @@ def Get_active_flinks(position):
     links[1].rr += position.gl
     links[2].rl += position.gr
     links[3].rr += position.gr
-    for x in links:
-        check_position(x)
-    clean_list(position, links)
     return links
 
 
@@ -118,6 +115,10 @@ def Link_list(position_list):
         for link in Get_active_flinks(position):
             position.flinks.append(link)
             link_count += 1
+            #clean & check
+        for x in position.flinks:
+            check_position(x)
+        clean_list(position, position.flinks)
     return link_count
 
 
@@ -127,7 +128,7 @@ def Print_list(position_list):	#chekced
 
 
 def Main():
-    X=224
+    X=16
     position_list = []
     print(Fill_list(position_list))
     Link_list(position_list)
