@@ -1,4 +1,4 @@
-#chopsticks engine;
+#chopsticks engine; split into multiple modules
 
 FINGER_NUMBER = 5
 
@@ -123,17 +123,7 @@ def Link_list(position_list):
 
 
 def Print_list(position_list):	#chekced
-    for position in position_list:
-        print(str(position))
-
-
-def Main():
-    X=16
-    position_list = []
-    print(Fill_list(position_list))
-    Link_list(position_list)
-    print("\t"+str(position_list[X]))
-    for x in position_list[X].flinks:
-        print(str(x))
-                                
-Main()
+    for i in range(len(position_list)):
+        print(str(i) + ': ' + str(position_list[i]))
+        for link in position_list[i].flinks:
+            print("\t"+str(link))
