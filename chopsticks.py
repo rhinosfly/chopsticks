@@ -1,4 +1,4 @@
-#chopsticks engine; split into multiple modules
+#chopsticks engine: split into multiple modules; 
 
 FINGER_NUMBER = 5
 
@@ -24,7 +24,8 @@ class Position:
             return False
 
 
-def Fill_list(position_list):	#checked
+def Fill_list():
+    position_list = []
     list_len = 0
     for i in range(FINGER_NUMBER):
         for j in range(i+1):
@@ -32,7 +33,7 @@ def Fill_list(position_list):	#checked
                 for l in range(k+1):
                     position_list.append(Position(i,j,k,l))
                     list_len += 1
-    return list_len
+    return position_list
 
 
 def roundup(x):
