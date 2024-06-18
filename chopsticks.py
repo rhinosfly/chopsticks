@@ -24,17 +24,6 @@ class Position:
             return False
 
 
-def Fill_list():
-    position_list = []
-    list_len = 0
-    for i in range(FINGER_NUMBER):
-        for j in range(i+1):
-            for k in range(FINGER_NUMBER):
-                for l in range(k+1):
-                    position_list.append(Position(i,j,k,l))
-                    list_len += 1
-    return position_list
-
 
 def roundup(x):
     xint = int(x)
@@ -43,15 +32,6 @@ def roundup(x):
     else:
         return xint
 
-
-def Get_passive_flinks(position):	#checked
-    links = []
-    #FIND LIST
-    total = position.gl + position.gr
-    for x in range(roundup(total/2.0), total + 1):
-        if not position.gl == x%5:
-            links.append(Position(x%5, (total - x)%5, position.rl, position.rr))
-    return links
 
 
 
@@ -92,35 +72,6 @@ def clean_list(position, links):
         links.append(x)
     return retlist
 
-                
-def Get_active_flinks(position):
-    links = []
-    for x in range(4):
-        links.append(position.copy())
-    links[0].rl += position.gl
-    links[1].rr += position.gl
-    links[2].rl += position.gr
-    links[3].rr += position.gr
-    return links
-
-
-
-def Link_list(position_list):
-    link_count = 0
-    for position in position_list:
-        #passive moves
-        for link in Get_passive_flinks(position):
-            position.flinks.append(link)
-            link_count += 1
-        #active moves
-        for link in Get_active_flinks(position):
-            position.flinks.append(link)
-            link_count += 1
-            #clean & check
-        for x in position.flinks:
-            check_position(x)
-        clean_list(position, position.flinks)
-    return link_count
 
 
 def Print_list(position_list):	#chekced
