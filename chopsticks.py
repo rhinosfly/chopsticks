@@ -1,4 +1,4 @@
-#chopsticks engine; working get_passive_flinks()
+#chopsticks engine;
 
 FINGER_NUMBER = 5
 
@@ -12,6 +12,16 @@ class Position:
         self.blinks = []
     def __str__(self):
         return "[{}, {}, {}, {}]".format(self.gl, self.gr, self.rl, self.rr)
+    def copy(self):	#CHECKED
+        retval = Position(self.gl, self.gr, self.rl, self.rr)
+        retval.flinks = self.flinks.copy()
+        retval.blinks = self.blinks.copy()
+        return retval
+    def equals(self, other):	#CHEKED
+        if self.gl == other.gl and self.gr == other.gr and self.rl == other.rl and self.rr == other.rr:
+            return True
+        else:
+            return False
 
 
 def Fill_list(position_list):	#checked
@@ -43,9 +53,58 @@ def Get_passive_flinks(position):	#checked
     return links
 
 
+
+def check_position(p): #p == position; CHECKED
+    p.gl %= FINGER_NUMBER
+    p.gr %= FINGER_NUMBER
+    p.rl %= FINGER_NUMBER
+    p.rr %= FINGER_NUMBER
+    if p.gr > p.gl:
+        tmp = p.gr
+        p.gr = p.gl
+        p.gl = tmp
+    if p.rr > p.rl:
+        tmp = p.rr
+        p.rr = p.rl
+        p.rl = tmp
+        
+
+def clean_list(position, links):
+    global len
+    deletions = []	#links to delete
+    retlist = []	#final list
+    #get deletions
+    for i in links: #remove links to self
+        if i.equals(position):
+            deletions.append(i)
+    length = len(links)	#remove duplicates
+    for i in range(length-1):
+        for j in range(i+1,length):
+            if links[i].equals(links[j]):
+                deletions.append(links[j])
+    #delete deletions
+    for i in links:
+        if i not in deletions:
+            retlist.append(i)
+    links.clear()
+    for x in retlist:
+        links.append(x)
+    return retlist
+
+                
 def Get_active_flinks(position):
     links = []
+    for x in range(4):
+        links.append(position.copy())
+    links[0].rl += position.gl
+    links[1].rr += position.gl
+    links[2].rl += position.gr
+    links[3].rr += position.gr
+    for x in links:
+        check_position(x)
+    clean_list(position, links)
     return links
+
 
 
 def Link_list(position_list):
@@ -57,9 +116,8 @@ def Link_list(position_list):
             link_count += 1
         #active moves
         for link in Get_active_flinks(position):
-            pass
-        #position.flinks.append(link)
-         #   link_count += 1
+            position.flinks.append(link)
+            link_count += 1
     return link_count
 
 
@@ -69,7 +127,7 @@ def Print_list(position_list):	#chekced
 
 
 def Main():
-    X=199
+    X=224
     position_list = []
     print(Fill_list(position_list))
     Link_list(position_list)
