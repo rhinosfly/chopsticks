@@ -17,7 +17,7 @@ def Get_passive_flinks(position):	#checked
     total = position.gl + position.gr
     for x in range(cs.roundup(total/2.0), total + 1):
         if not position.gl == x%5:
-            links.append(cs.Position(x%5, (total - x)%5, position.rl, position.rr))
+            links.append(cs.Position(x%5, (total - x)%5, position.rl, position.rr).flip())
     return links
                 
 def Get_active_flinks(position):
@@ -28,6 +28,8 @@ def Get_active_flinks(position):
     links[1].rr += position.gl
     links[2].rl += position.gr
     links[3].rr += position.gr
+    for x in links:
+        x.flip()
     return links
 
 
