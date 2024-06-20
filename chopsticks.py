@@ -11,7 +11,7 @@ class Position:
         self.flinks = []
         self.blinks = []
     def __str__(self):
-        return "[{}, {}, {}, {}]".format(self.gl, self.gr, self.rl, self.rr)
+        return "[[{}, {}, {}, {}]]".format(self.gl, self.gr, self.rl, self.rr)
     def copy(self):	#CHECKED
         retval = Position(self.gl, self.gr, self.rl, self.rr)
         retval.flinks = self.flinks.copy()

@@ -4,6 +4,6 @@ import chopsticks as cs
 
 def write(position_list):
     for position in position_list:
-        newfile = open("/home/linus/documents/obsidian/chopsticks/" + str(position)[1:-1] + ".md", "w")
+        newfile = open("/home/linus/documents/obsidian/chopsticks/" + str(position)[2:-2] + ".md", "w")
         for link in position.flinks:
-            newfile.write("[" + str(link) + "]")
+            newfile.write(str(link) + "\n")
