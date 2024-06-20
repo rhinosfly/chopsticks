@@ -10,19 +10,35 @@ class Position:
         self.rr = rr
         self.flinks = []
         self.blinks = []
+        
     def __str__(self):
         return "[[{}, {}, {}, {}]]".format(self.gl, self.gr, self.rl, self.rr)
+    
     def copy(self):	#CHECKED
         retval = Position(self.gl, self.gr, self.rl, self.rr)
         retval.flinks = self.flinks.copy()
         retval.blinks = self.blinks.copy()
         return retval
+    
     def equals(self, other):	#CHEKED
         if self.gl == other.gl and self.gr == other.gr and self.rl == other.rl and self.rr == other.rr:
             return True
         else:
             return False
 
+    def correct(self): #p == position; CHECKED
+        self.gl %= FINGER_NUMBER
+        self.gr %= FINGER_NUMBER
+        self.rl %= FINGER_NUMBER
+        self.rr %= FINGER_NUMBER
+        if self.gr > self.gl:
+            tmp = self.gr
+            self.gr = self.gl
+            self.gl = tmp
+        if self.rr > self.rl:
+            tmp = self.rr
+            self.rr = self.rl
+            self.rl = tmp
 
 
 def roundup(x):
@@ -32,23 +48,6 @@ def roundup(x):
     else:
         return xint
 
-
-
-
-def check_position(p): #p == position; CHECKED
-    p.gl %= FINGER_NUMBER
-    p.gr %= FINGER_NUMBER
-    p.rl %= FINGER_NUMBER
-    p.rr %= FINGER_NUMBER
-    if p.gr > p.gl:
-        tmp = p.gr
-        p.gr = p.gl
-        p.gl = tmp
-    if p.rr > p.rl:
-        tmp = p.rr
-        p.rr = p.rl
-        p.rl = tmp
-        
 
 def clean_list(position, links):
     global len

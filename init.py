@@ -43,8 +43,8 @@ def Link_list(position_list):
         for link in Get_active_flinks(position):
             position.flinks.append(link)
             link_count += 1
-        #check & clean..
+        #correct & clean
         for x in position.flinks:
-            cs.check_position(x)
+            x.correct()
         cs.clean_list(position, position.flinks)
     return link_count
