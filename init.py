@@ -8,6 +8,7 @@ def Fill_list():
             for k in range(cs.FINGER_NUMBER):
                 for l in range(k+1):
                     position_list.append(cs.Position(i,j,k,l))
+                    position_list[list_len].index = list_len
                     list_len += 1
     return position_list
 

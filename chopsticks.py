@@ -10,6 +10,7 @@ class Position:
         self.rr = rr
         self.flinks = []
         self.blinks = []
+        self.index = -1
         
     def __str__(self):
         return "[[{}, {}, {}, {}]]".format(self.gl, self.gr, self.rl, self.rr)
@@ -84,6 +85,6 @@ def clean_list(position, links):
 
 def Print_list(position_list):	#chekced
     for i in range(len(position_list)):
-        print(str(i) + ': ' + str(position_list[i]))
+        print(str(position_list[i].index) + ': ' + str(position_list[i]))
         for link in position_list[i].flinks:
             print("\t"+str(link))
