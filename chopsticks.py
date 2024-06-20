@@ -26,7 +26,7 @@ class Position:
         else:
             return False
 
-    def correct(self): #p == position; CHECKED
+    def correct(self):
         self.gl %= FINGER_NUMBER
         self.gr %= FINGER_NUMBER
         self.rl %= FINGER_NUMBER
@@ -39,6 +39,15 @@ class Position:
             tmp = self.rr
             self.rr = self.rl
             self.rl = tmp
+
+    def flip(self):
+        tmpl = self.gl
+        tmpr = self.gr
+        self.gl = self.rl
+        self.gr = self.rr
+        self.rl = tmpl
+        self.rr = tmpr
+        return self
 
 
 def roundup(x):
