@@ -1,3 +1,5 @@
-from play import Play
+import commands
+import shell
 
-Play()
+#starts in interactive shell mode, with dictionary from commands
+shell.shell(commands.dictionary)

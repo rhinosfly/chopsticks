@@ -1,5 +1,5 @@
-#THE INTERACTIVE SHELL
-#run init commands
+#DICTIONARY OF SHELL COMMANDS
+
 
 from init import Init_list
 import chopsticks as cs
@@ -20,10 +20,9 @@ def Startup():
             continue
 
 def Play():
-    if Startup() == 1:
-        return 0
-    position_list = Init_list()
-    
-    while input_string := input("> "):
-        print(input_string)
-    return 0
+    Startup()
+
+
+dictionary = {
+    "quit" : "please quit"
+    }
