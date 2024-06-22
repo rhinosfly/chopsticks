@@ -8,7 +8,8 @@ import files
 
 def Startup():
     print("Do you want to play a game?")
-    while input_string := input("y/n: "):
+    while True:
+        input_string = input("y/n: ")
         if input_string == 'n':
             print("too bad...")
             return 1
