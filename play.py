@@ -1,7 +1,12 @@
 #THE INTERACTIVE SHELL
-#simple input output capability
+#run init commands
 
-def startup():
+from init import Init_list
+import chopsticks as cs
+import files
+
+
+def Startup():
     print("Do you want to play a game?")
     while input_string := input("y/n: "):
         if input_string == 'n':
@@ -11,11 +16,14 @@ def startup():
             print("excellent...")
             return 0
         else:
+            print("stoooobid!")
             continue
 
-def play():
-    if startup() == 1:
+def Play():
+    if Startup() == 1:
         return 0
+    position_list = Init_list()
+    
     while input_string := input("> "):
         print(input_string)
     return 0

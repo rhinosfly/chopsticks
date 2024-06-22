@@ -1,3 +1,3 @@
-from play import play
+from play import Play
 
-play()
+Play()
