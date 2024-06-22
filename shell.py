@@ -7,7 +7,7 @@ def shell(cmd_dict):
     while not EXIT:
         input_string = input(PROMT_STRING)
         if input_string in cmd_dict:
-            print("command: ",end = "")
+            cmd_dict[input_string]()
         elif input_string:
             print("\""+input_string+"\" not recognized")
     return 0

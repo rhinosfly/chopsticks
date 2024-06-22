@@ -22,7 +22,12 @@ def Startup():
 def Play():
     Startup()
 
+def Print():
+    print('hi')
 
+    
+#dicitonary assigns strings to functions to call from shell
 dictionary = {
-    "quit" : "please quit"
+    "startup" : Startup,
+    "print" : Print
     }
