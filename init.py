@@ -1,6 +1,6 @@
 import chopsticks as cs
 
-def Fill_list(position_list):
+def Fill_list(position_list):   #take empty list and add entries for every unique position
     list_len = 0
     for i in range(cs.FINGER_NUMBER):
         for j in range(i+1):
@@ -11,7 +11,7 @@ def Fill_list(position_list):
                     list_len += 1
     return list_len
 
-def Get_passive_flinks(position):	#checked
+def Get_passive_flinks(position):	#add all positions posible through a passive move to 'links'
     links = []
     #FIND LIST
     total = position.gl + position.gr
@@ -20,7 +20,7 @@ def Get_passive_flinks(position):	#checked
             links.append(cs.Position(x%5, (total - x)%5, position.rl, position.rr))
     return links
                 
-def Get_active_flinks(position):
+def Get_active_flinks(position):    #add all positions posible through an active move to 'links'
     links = []
     for x in range(4):
         links.append(position.copy())
@@ -32,7 +32,7 @@ def Get_active_flinks(position):
 
 
 
-def Link_list(position_list):
+def Link_list(position_list): #add every possible next position to list: "flinks"
     link_count = 0
     for position in position_list:
         #passive moves

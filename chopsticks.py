@@ -1,16 +1,16 @@
 #chopsticks engine: split into multiple modules; 
 
-FINGER_NUMBER = 5
+FINGER_NUMBER = 5   #you never know
 
 class Position:
     def __init__(self, gl, gr, rl, rr):
-        self.gl = gl
-        self.gr = gr
-        self.rl = rl
-        self.rr = rr
-        self.flinks = []
-        self.blinks = []
-        self.index = -1
+        self.gl = gl    #giver left
+        self.gr = gr    #giver right
+        self.rl = rl    #reciever left
+        self.rr = rr    #reciever right
+        self.flinks = []    #forward links
+        self.blinks = []    #backward links
+        self.index = -1     #index (-1 for uninitialized)
         
     def __str__(self):
         return "[[{}, {}, {}, {}]]".format(self.gl, self.gr, self.rl, self.rr)
@@ -21,13 +21,13 @@ class Position:
         retval.blinks = self.blinks.copy()
         return retval
     
-    def equals(self, other):	#CHEKED
+    def equals(self, other):	#CHEKED #true if all finger values are the same; false otherwise
         if self.gl == other.gl and self.gr == other.gr and self.rl == other.rl and self.rr == other.rr:
             return True
         else:
             return False
 
-    def correct(self):
+    def correct(self):  # correct position to be legal
         self.gl %= FINGER_NUMBER
         self.gr %= FINGER_NUMBER
         self.rl %= FINGER_NUMBER
@@ -41,7 +41,7 @@ class Position:
             self.rr = self.rl
             self.rl = tmp
 
-    def flip(self):
+    def flip(self):     #flip giver and reciever (for turn switch)
         tmpl = self.gl
         tmpr = self.gr
         self.gl = self.rl
@@ -59,7 +59,7 @@ def roundup(x):
         return xint
 
 
-def clean_list(position, links):
+def clean_list(position, links):    #remove links to self, and duplicate links
     global len
     deletions = []	#links to delete
     retlist = []	#final list
