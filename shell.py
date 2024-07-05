@@ -1,9 +1,17 @@
 # A GENERAL REUSABLE INTERACTIVE SHELL, THAT CAN CALL COMMANDS FROM CMD_DICT
 
+EXIT = 0
+
+def Exit():
+    global EXIT
+    EXIT ^= 1
+
 def shell(cmd_dict):
+    global EXIT
     PROMT_STRING = "> "
-    EXIT = 0
-    
+    cmd_dict["exit"] = Exit
+    cmd_dict["quit"] = Exit 
+
     while not EXIT:
         input_string = input(PROMT_STRING)
         if input_string in cmd_dict:
