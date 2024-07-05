@@ -13,7 +13,11 @@ def shell(cmd_dict):
     cmd_dict["quit"] = Exit 
 
     while not EXIT:
-        input_string = input(PROMT_STRING)
+        try:
+            input_string = input(PROMT_STRING)
+        except EOFError:
+            print("exit")
+            break
         if input_string in cmd_dict:
             cmd_dict[input_string]()
         elif input_string:
