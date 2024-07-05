@@ -1,7 +1,6 @@
 import chopsticks as cs
 
-def Fill_list():
-    position_list = []
+def Fill_list(position_list):
     list_len = 0
     for i in range(cs.FINGER_NUMBER):
         for j in range(i+1):
@@ -10,7 +9,7 @@ def Fill_list():
                     position_list.append(cs.Position(i,j,k,l))
                     position_list[list_len].index = list_len
                     list_len += 1
-    return position_list
+    return list_len
 
 def Get_passive_flinks(position):	#checked
     links = []
@@ -51,3 +50,10 @@ def Link_list(position_list):
         for x in position.flinks:
             x.flip()
     return link_count
+
+
+def Init_list():
+    position_list = []
+    Fill_list(position_list)
+    Link_list(position_list)
+    return position_list
