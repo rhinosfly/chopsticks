@@ -59,7 +59,7 @@ def roundup(x):
         return xint
 
 
-def clean_list(position, links):    #remove links to self, and duplicate links
+def clean_list(position, links):    #remove self and duplicate links
     global len
     deletions = []	#links to delete
     retlist = []	#final list
