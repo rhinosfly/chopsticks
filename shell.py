@@ -6,7 +6,7 @@ def Exit():
     global EXIT
     EXIT ^= 1
 
-def shell(cmd_dict):
+def Shell(cmd_dict):
     global EXIT
     PROMT_STRING = "> "
     cmd_dict["exit"] = Exit

@@ -15,7 +15,7 @@ def Get_passive_flinks(position):	#add all positions posible through a passive m
     links = []
     #FIND LIST
     total = position.gl + position.gr
-    for x in range(cs.roundup(total/2.0), total + 1):
+    for x in range(cs.Roundup(total/2.0), total + 1):
         if not position.gl == x%5:
             links.append(cs.Position(x%5, (total - x)%5, position.rl, position.rr))
     return links
@@ -23,7 +23,7 @@ def Get_passive_flinks(position):	#add all positions posible through a passive m
 def Get_active_flinks(position):    #add all positions posible through an active move to 'links'
     links = []
     for x in range(4):
-        links.append(position.copy())
+        links.append(position.Copy())
     links[0].rl += position.gl
     links[1].rr += position.gl
     links[2].rl += position.gr
@@ -45,10 +45,10 @@ def Link_list(position_list): #add every possible next position to list: "flinks
             link_count += 1
         #correct & clean
         for x in position.flinks:
-            x.correct()
-        cs.clean_list(position, position.flinks)
+            x.Correct()
+        cs.Clean_list(position, position.flinks)
         for x in position.flinks:
-            x.flip()
+            x.Flip()
     return link_count
 
 
