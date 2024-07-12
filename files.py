@@ -2,7 +2,7 @@
 
 import chopsticks as cs
 
-def write(position_list):
+def Write(position_list):
     for position in position_list:
         newfile = open("/home/linus/documents/obsidian/chopsticks/" + str(position)[2:-2] + ".md", "w")
         newfile.write(str(position.index) + "\n")
