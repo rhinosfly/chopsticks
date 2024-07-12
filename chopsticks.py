@@ -15,19 +15,19 @@ class Position:
     def __str__(self):
         return "[[{}, {}, {}, {}]]".format(self.gl, self.gr, self.rl, self.rr)
     
-    def copy(self):	#CHECKED
+    def Copy(self):	#CHECKED
         retval = Position(self.gl, self.gr, self.rl, self.rr)
         retval.flinks = self.flinks.copy()
         retval.blinks = self.blinks.copy()
         return retval
     
-    def equals(self, other):	#CHEKED #true if all finger values are the same; false otherwise
+    def Equals(self, other):	#CHEKED #true if all finger values are the same; false otherwise
         if self.gl == other.gl and self.gr == other.gr and self.rl == other.rl and self.rr == other.rr:
             return True
         else:
             return False
 
-    def correct(self):  # correct position to be legal
+    def Correct(self):  # correct position to be legal
         self.gl %= FINGER_NUMBER
         self.gr %= FINGER_NUMBER
         self.rl %= FINGER_NUMBER
@@ -41,7 +41,7 @@ class Position:
             self.rr = self.rl
             self.rl = tmp
 
-    def flip(self):     #flip giver and reciever (for turn switch)
+    def Flip(self):     #flip giver and reciever (for turn switch)
         tmpl = self.gl
         tmpr = self.gr
         self.gl = self.rl
@@ -51,7 +51,7 @@ class Position:
         return self
 
 
-def roundup(x):
+def Roundup(x):
     xint = int(x)
     if xint < x:
         return xint + 1
@@ -59,18 +59,18 @@ def roundup(x):
         return xint
 
 
-def clean_list(position, links):    #remove self and duplicate links
+def Clean_list(position, links):    #remove self and duplicate links
     global len
     deletions = []	#links to delete
     retlist = []	#final list
     #get deletions
     for i in links: #remove links to self
-        if i.equals(position):
+        if i.Equals(position):
             deletions.append(i)
     length = len(links)	#remove duplicates
     for i in range(length-1):
         for j in range(i+1,length):
-            if links[i].equals(links[j]):
+            if links[i].Equals(links[j]):
                 deletions.append(links[j])
     #delete deletions
     for i in links:
