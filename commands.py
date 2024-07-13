@@ -6,7 +6,7 @@ import chopsticks as cs
 import files
 
 
-def Startup():
+def Play(arg_list):
     print("Do you want to play a game?")
     while True:
         input_string = input("y/n: ")
@@ -20,15 +20,13 @@ def Startup():
             print("stoooobid!")
             continue
 
-def Play():
-    Startup()
-
-def Print():
-    print('hi')
-
+def Echo(args):
+    for x in args[1:]:
+        print(x, end=" ")
+    print()
     
 #dicitonary assigns strings to functions to call from shell
 dictionary = {
-    "startup" : Startup,
-    "print" : Print
+    "echo" : Echo,
+    "play" : Play
     }
