@@ -14,12 +14,12 @@
   - function for writing all Positions and their links into markdown files for viewing in Obsidian
 - shell.py
   - a stand-alone general-use interactive shell based on bash
-  - Shell(command_dictionary) can run functions in command_dictionary
+  - Shell(command_dictionary, Variable_dictionary) can use functions in command_dictionary, and variables in Variable dictionary
 - commands.py
   - imports a lot
   - dictionary to be passed to shell
   - corrosponding function definitions
 - main.py
   - imports Shell from shell and commands
-  - calls Shell(commands.dictionary)
+  - calls Shell(commands.dictionary, Variable_dictionary)
 # How to use
