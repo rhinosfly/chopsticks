@@ -17,8 +17,8 @@ def Shell(cmd_dict):
             print(PROMT_STRING, end = "")
             arg_list = Get_arguments()
         except EOFError:
+            print("")
             break
-
         if not len(arg_list):
             continue
         elif arg_list[0] in cmd_dict:
