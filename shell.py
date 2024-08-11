@@ -19,10 +19,13 @@ def Shell(cmd_dict, var_dict):
         except EOFError:
             print("")
             break
-        if not len(arg_list):
+        if not len(arg_list):       #continue if there's no input
             continue
-        elif arg_list[0] in cmd_dict:
+        if "=" in arg_list[0]:		#add variable if there's an '='
+            index = arg_list[0].find('=')
+            var_dict[arg_list[0][:index]] = arg_list[0][index+1:]
+        elif arg_list[0] in cmd_dict: #run if it's a command
             cmd_dict[arg_list[0]](arg_list, var_dict)
-        else:
+        else:                       #error if unrecognized
             print("shell: " + arg_list[0] + ": command not found")
     return 0
