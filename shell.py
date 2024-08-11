@@ -3,9 +3,15 @@
 EXIT = 0
 PROMT_STRING = "> "
     
-def Get_arguments():
+def Get_arguments(var_dict):
     input_string = input()
     arg_list = input_string.split()
+    for i in range(len(arg_list)):  #replace variables with values
+        if arg_list[i][0] == "$":
+            if arg_list[i][1:] in var_dict:
+                arg_list[i] = var_dict[arg_list[i][1:]]
+            else:
+                print("shell: " + arg_list[i][1:] + ":variable not found")
     return arg_list
 
 def Shell(cmd_dict, var_dict):
@@ -15,7 +21,7 @@ def Shell(cmd_dict, var_dict):
     while not EXIT:
         try:
             print(PROMT_STRING, end = "")
-            arg_list = Get_arguments()
+            arg_list = Get_arguments(var_dict)
         except EOFError:
             print("")
             break
