@@ -6,10 +6,13 @@ import chopsticks as cs
 import files
 
 
-def Play(arg_list):
+def Startup(arg_list):
     print("Do you want to play a game?")
     while True:
-        input_string = input("y/n: ")
+        try:
+            input_string = input("y/n: ")
+        except EOFError:
+            break
         if input_string == 'n':
             print("too bad...")
             return 1
@@ -20,6 +23,12 @@ def Play(arg_list):
             print("stoooobid!")
             continue
 
+def Play(arg_list):
+    if Startup(None):
+        return 1
+    position_list = Init_list()
+    cs.Print_list(position_list)
+        
 def Echo(args):
     for x in args[1:]:
         print(x, end=" ")
