@@ -38,4 +38,4 @@ def Echo(args):
 dictionary = {
     "echo" : Echo,
     "play" : Play
-    }
+}
