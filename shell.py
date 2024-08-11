@@ -1,4 +1,4 @@
-# A GENERAL REUSABLE INTERACTIVE SHELL, THAT CAN CALL COMMANDS FROM CMD_DICT
+# A GENERAL REUSABLE INTERACTIVE SHELL, THAT CAN CALL COMMANDS FROM CMD_DICT, AND VARIABLES FROM VAR_DICT
 
 EXIT = 0
 PROMT_STRING = "> "
@@ -8,7 +8,7 @@ def Get_arguments():
     arg_list = input_string.split()
     return arg_list
 
-def Shell(cmd_dict):
+def Shell(cmd_dict, var_dict):
     global EXIT
     global PROMT_STRING
 
@@ -22,7 +22,7 @@ def Shell(cmd_dict):
         if not len(arg_list):
             continue
         elif arg_list[0] in cmd_dict:
-            cmd_dict[arg_list[0]](arg_list)
+            cmd_dict[arg_list[0]](arg_list, var_dict)
         else:
             print("shell: " + arg_list[0] + ": command not found")
     return 0
