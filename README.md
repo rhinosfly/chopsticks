@@ -21,5 +21,5 @@
   - corrosponding function definitions
 - main.py
   - imports Shell from shell and commands
-    -runs Shell.shell(commands.functions, commands.dictionary)
+  - runs Shell.shell(commands.functions, commands.dictionary)
 # How to use
